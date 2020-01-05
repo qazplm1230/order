@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
+    <link type="text/css" rel="stylesheet" href="css/table.css">
+    <style>
+        label, input { display:block; }
+        input.text { margin-bottom:12px; width:95%; padding: .4em; }
+        fieldset { padding:0; border:0; margin-top:25px; }
+        h1 { font-size: 1.2em; margin: .6em 0; }
+        div#users-contain { width: 350px; margin: 20px 0; }
+        div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+        div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+        .ui-dialog .ui-state-error { padding: .3em; }
+        .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    </style>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+</head>
+
+<body>
+<div id="container" class="container" >
+    <div id="left" class="left">
+        <div id="draggable" class="ui-state-default" >
+            <div id="order" class="count">37</div>
+            <div class="time"></div>
+        </div>
+
+        <div id="sortable" class="connectedSortable" >
+            <div class="ui-state-default">
+                <div  class="count">36</div>
+                <div  class="time"></div>
+            </div>
+            <div class="ui-state-default">
+                <div  class="count">34</div>
+                <div  class="time"></div>
+            </div>
+            <div class="ui-state-default">
+                <div  class="count">29</div>
+                <div  class="time"></div>
+            </div>
+            <div class="ui-state-default">
+                <div  class="count">28</div>
+                <div  class="time"></div>
+            </div>
+            <div class="ui-state-default">
+                <div  class="count">26</div>
+                <div  class="time"></div>
+            </div>
+        </div>
+    </div>
+    <div id="right" class="right">
+
+        <div id="table1" class="table">
+            <span class="table_id" >C20</span>
+            <div id="sortable1" class="connectedSortable">
+                <a id="del" href="order.html?table_id=C20" onclick="deleteElement()">+</a>
+            </div>
+        </div>
+
+        <div id="table2" class="table">
+            <span class="table_id">A1</span>
+            <div id="sortable2" class="connectedSortable">
+                <div class="ui-state-default">
+                    <div  class="count">20</div>
+                    <div  class="time"></div>
+                </div>
+                <div class="ui-state-default">
+                    <div class="count">19</div>
+                    <div  class="time"></div>
+                </div>
+            </div>
+        </div>
+        <div id="table3" class="table">
+            <span class="table_id">A2</span>
+            <div id="sortable3" class="connectedSortable">
+                <div class="ui-state-default">
+                    <div  class="count">22</div>
+                    <div  class="time"></div>
+                </div>
+            </div>
+        </div>
+        <div id="table4" class="table">
+            <span class="table_id">A3</span>
+            <div id="sortable4" class="connectedSortable">
+                <div class="ui-state-default">
+                    <div  class="count">25</div>
+                    <div  class="time"></div>
+                </div>
+                <div class="ui-state-default">
+                    <div  class="count">24</div>
+                    <div  class="time"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="table5" class="table">
+            <span class="table_id">A4</span>
+            <div id="sortable5" class="connectedSortable">
+                <div class="ui-state-default">
+                    <div  class="count">17</div>
+                    <div  class="time"></div>
+                </div>
+            </div>
+        </div>
+        <div id="table6" class="table">
+            <span class="table_id">C6</span>
+            <div id="sortable6" class="connectedSortable">
+                <div class="ui-state-default">
+                    <div  class="count">25</div>
+                    <div  class="time"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="table7" class="table">
+            <span class="table_id">C1</span>
+            <div id="sortable7" class="connectedSortable">
+                <div class="ui-state-default">
+                    <div  class="count">23</div>
+                    <div  class="time"></div>
+                </div>
+            </div>
+        </div>
+        <div id="table8" class="table">
+            <span class="table_id">C7</span>
+            <div id="sortable8" class="connectedSortable">
+                <a href="order.html?table_id=C7">+</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialog-form" title="Create new user">
+    <p class="validateTips">All form fields are required.</p>
+
+    <form>
+        <fieldset>
+            <label for="name">姓名</label>
+            <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+            <label for="tel">电话号码</label>
+            <input type="text" name="tel" id="tel" value="" class="text ui-widget-content ui-corner-all">
+            <label for="remarks">备注人数</label>
+            <input type="text" name="remarks" id="remarks" value="" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+<script >
+    if(!window.localStorage) {
+        alert("浏览器不支持localstorage");
+    }
+    $( function() {
+        var dialog, form;
+        function addUser() {
+                //将值存储在本地
+                localStorage.setItem(("name"), $("#name").val());
+                localStorage.setItem(("tel"), $("#tel").val());
+                localStorage.setItem(("remarks"), $("#remarks").val());
+                //alert(localStorage.getItem("name"));
+                //alert(localStorage.getItem("tel"));
+                //alert(localStorage.getItem("remarks"));
+            dialog.dialog( "close" );
+        }
+        dialog = $( "#dialog-form" ).dialog({
+            autoOpen: false,
+            height: 400,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Create an account": addUser,
+                Cancel: function() {
+                    dialog.dialog( "close" );
+                }
+            },
+            close: function() {
+                form[ 0 ].reset();
+            }
+        });
+        form = dialog.find( "form" ).on( "submit", function( event ) {
+            event.preventDefault();
+            addUser();
+        });
+
+
+        $( "#sortable,#sortable1,#sortable2,#sortable3,#sortable4,#sortable5,#sortable6,#sortable7,#sortable8" ).sortable({
+            connectWith: ".connectedSortable",
+            cancel: "span.header"
+        }).disableSelection();
+
+
+        $( "#sortable1,#sortable2,#sortable3,#sortable4,#sortable5,#sortable6,#sortable7,#sortable8" ).droppable({
+            accept: "#sortable .ui-state-default",
+            drop: function() {
+                dialog.dialog( "open" );
+            }
+        });
+
+
+        var new_count=37;
+        $( "#draggable" ).draggable({
+            connectToSortable: "#sortable",
+            helper: "clone",
+            revert: "invalid",
+            start: function() {
+                new_count++;
+                $( "#draggable .count").text( new_count );
+            }
+        });
+
+
+
+    });
+
+    function deleteElement(){
+        var del = document.getElementById("del");
+
+        document.getElementById('table1').style.background="RGB(230,83,74)";
+        localStorage.setItem("table_color",document.getElementById('table1').style.background);
+        del.text="";
+        localStorage.setItem("table_a",del.text);
+
+        //document.getElementById("del").parentNode.removeChild(del);
+    }
+</script>
+<script>
+    window.onload=function(){
+        document.getElementById('table1').style.background=localStorage.getItem('table_color');
+         if(localStorage.getItem('table_a')==null){
+             localStorage.setItem('table_a',"+");
+             document.getElementById('del').text=localStorage.getItem('table_a');
+         }else{
+             document.getElementById('del').text=localStorage.getItem('table_a');
+         }
+        //document.getElementById('del').innerText=localStorage.getItem('table_a');
+    };
+</script>
+</body>
+</html>

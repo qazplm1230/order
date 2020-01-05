@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/jquery-ui.min.css">
+    <link type="text/css" rel="stylesheet" href="css/order.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+</head>
+<body >
+<div id="container" class="container" >
+    <div id="left" class="left">
+        <div id="left_top" class="left_top">
+             <span class="table_id">C20</span>
+        </div>
+        <div id="left_main" class="left_main">
+            <table id="table">
+                <tbody>
+
+                <tr class="tr3">
+                    <td class="td3">总计</td>
+                    <td></td>
+                    <td id="td_total">0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="left_bottom" class="">
+            <button id="reduce" type="button" class="btn btn-default" onclick="reduce()">-</button>
+            <div id="member" class="input-group">
+                <input id="people" type="text" class="form-control" placeholder="1"><span class="input-group-addon">人</span>
+            </div>
+            <button id="add" type="button" class="btn btn-default" onclick="add()">+</button>
+            <button id="back" type="button" class="btn btn-danger btn-lg" onclick="goBack()">返回</button>
+            <button id="check" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg" onclick="addOrder() " >出单</button>
+
+        </div>
+    </div>
+    <div id="right" class="right">
+
+        <dl>
+            <dt>
+                <a href="#" >
+                    <img src="image/order_2.jpg" alt="alt" class="menu_pic1" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥30</dd>
+            <dd class="menu_text1"><a href="#">美式咖啡</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_2.jpg" alt="alt" class="menu_pic1" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥30</dd>
+            <dd class="menu_text1"><a href="#">美式咖啡</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_2.jpg" alt="alt" class="menu_pic1" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥30</dd>
+            <dd class="menu_text1"><a href="#">美式咖啡</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_2.jpg" alt="alt" class="menu_pic1" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥30</dd>
+            <dd class="menu_text1"><a href="#">美式咖啡</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_2.jpg" alt="alt" class="menu_pic1" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥30</dd>
+            <dd class="menu_text1"><a href="#">美式咖啡</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_3.jpg" alt="alt" class="menu_pic2"  />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥50</dd>
+            <dd class="menu_text2"><a href="#">卡布奇诺</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_3.jpg" alt="alt" class="menu_pic2" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥50</dd>
+            <dd class="menu_text2"><a href="#">卡布奇诺</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_3.jpg" alt="alt" class="menu_pic2" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥50</dd>
+            <dd class="menu_text2"><a href="#">卡布奇诺</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_3.jpg" alt="alt" class="menu_pic2" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥50</dd>
+            <dd class="menu_text2"><a href="#">卡布奇诺</a></dd>
+        </dl>
+        <dl>
+            <dt>
+                <a href="#">
+                    <img src="image/order_3.jpg" alt="alt" class="menu_pic2" />
+                </a>
+            </dt>
+            <dd class="menu_cost">￥50</dd>
+            <dd class="menu_text2"><a href="#">卡布奇诺</a></dd>
+        </dl>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cancel()">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    订单详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table id="table_2">
+                    <caption id="table_id">table_id</caption>
+                    <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="food_1">food1</td>
+                        <td id="cost_1">cost1</td>
+                        <td id="counter_1">counter1</td>
+                    </tr>
+                    <tr>
+                        <td id="food_2">food2</td>
+                        <td id="cost_2">cost2</td>
+                        <td id="counter_2">counter2</td>
+                    </tr>
+                    <tr>
+                        <td >总计</td>
+                        <td ></td>
+                        <td id="total_2">total</td>
+
+                    </tr>
+                    <tr>
+                        <td >人数</td>
+                        <td ></td>
+                        <td id="people_2">1</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancel()">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="success()">
+                    确认订单
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    $(function(){
+        var counter1=0;
+        var counter2=0;
+        var total=0;
+        var cost1=30;
+        var cost2=50;
+        $(".menu_pic1,.menu_text1").click(function(){
+            if(counter1==0){
+                $("#table").prepend("<tr><td id='food1'>美式咖啡</td><td id='cost1'>30￥</td> <td id='counter1'>1</td></tr>");
+                counter1=1;
+                total=counter1*cost1+counter2*cost2;
+                $("#td_total").text(total);
+            }else{
+                counter1+=1;
+                $("#counter1").text(counter1);
+                total=counter1*cost1+counter2*cost2;
+                $("#td_total").text(total);
+            }
+        });
+
+        $(".menu_pic2,.menu_text2").click(function(){
+            if(counter2==0){
+                $("#table").prepend("<tr><td id='food2'>卡布诺奇</td><td id='cost2'>50￥</td> <td id='counter2'>1</td></tr>");
+                counter2=1;
+                total=counter1*cost1+counter2*cost2;
+                $("#td_total").text(total);
+            }else{
+                counter2+=1;
+                $("#counter2").text(counter2);
+                total=counter1*cost1+counter2*cost2;
+                $("#td_total").text(total);
+            }
+        });
+
+
+    });
+
+    function addOrder(){
+            localStorage.setItem(("table_id"), $(".table_id").text());
+
+            localStorage.setItem(("food1"), $("#food1").text());
+            localStorage.setItem(("cost1"), $("#cost1").text());
+            localStorage.setItem(("counter1"), $("#counter1").text());
+
+            localStorage.setItem(("food2"), $("#food2").text());
+            localStorage.setItem(("cost2"), $("#cost2").text());
+            localStorage.setItem(("counter2"), $("#counter2").text());
+
+            localStorage.setItem(("total"), $("#td_total").text());
+            if(""==$("#people").val()){
+                localStorage.setItem("people", 1);
+            }else{
+                localStorage.setItem(("people"), $("#people").val());
+            }
+
+
+            $("#table_id").text(localStorage.getItem("table_id"));
+
+            $("#food_1").text(localStorage.getItem("food1"));
+            $("#cost_1").text(localStorage.getItem("cost1"));
+            $("#counter_1").text(localStorage.getItem("counter1"));
+
+            $("#food_2").text(localStorage.getItem("food2"));
+            $("#cost_2").text(localStorage.getItem("cost2"));
+            $("#counter_2").text(localStorage.getItem("counter2"));
+
+            $("#total_2").text(localStorage.getItem("total"));
+            $("#people_2").text(localStorage.getItem("people"));
+    }
+
+
+
+
+
+    /*获取到Url里面的参数*/
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r != null) return decodeURI(r[2]);
+        return null;
+    }
+
+    var table_id = GetQueryString('table_id');
+    window.onload = function(){
+        $(".table_id").html(table_id);
+    };
+
+    var num=1;
+    function reduce(){
+        num--;
+        if(num<1){
+            num=1;
+        }
+        $("#people").val(num);
+
+    }
+    function add(){
+        num++;
+        $("#people").val(num);
+    }
+
+    function goBack(){
+        window.history.back();
+    }
+
+</script>
+
+<script>
+
+    function cancel() {
+        alert('您已取消下单');
+    }
+
+    function success(){
+        alert("下单成功")
+    }
+</script>
+</body>
+</html>

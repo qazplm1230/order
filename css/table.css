@@ -1,0 +1,112 @@
+.container{
+    width:1600px;
+    height:800px;
+    background:RGB(255,255,255);
+}
+.left{
+    width:100px;
+    height:800px;
+    float:left;
+}
+.right{
+    width:1200px;
+    height:800px;
+    float:right;
+}
+
+.ui-state-default{
+    width:50px;
+    height:60px;
+    margin-left:5px;
+    margin-bottom:10px;
+
+}
+.table .ui-state-default{
+    float:right;
+    margin-right:5px;
+}
+
+#draggable{
+    margin-bottom: 200px;
+    width:50px;
+    height:60px;
+    margin-left:5px;
+
+}
+
+.count{
+    width:50px;
+    height:20px;
+    background:RGB(230,83,74);
+    color:RGB(255,255,255);
+}
+
+.time{
+    width:50px;
+    height:40px;
+    background-image: url(../image/order_1.png);
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+
+}
+
+.table{
+    width: 200px;
+    height:200px;
+    background-color: gray;
+    float:left;
+    margin-left:80px;
+    margin-bottom:30px;
+    margin-top:30px;
+}
+.table_id{
+    width:200px;
+    height:40px;
+}
+.table .connectedSortable{
+    width: 200px;
+    height:160px;
+}
+
+#table1{
+    background:RGB(49,49,49);
+}
+#table2{
+    background:RGB(230,83,74);
+}
+#table3{
+    background:RGB(245,180,91);
+}
+#table4{
+    background:RGB(245,180,91);
+}
+#table5{
+    background:RGB(230,83,74);
+}
+#table6{
+    background:RGB(230,83,74);
+}
+#table7{
+    background:RGB(59,179,157);
+}
+#table8{
+    background:RGB(49,49,49);
+}
+.table .table_id{
+    font-size:30px;
+    color:RGB(255,255,255);
+}
+
+a{
+
+    text-decoration: none;
+    font-size: 50px;
+    color:RGB(255,255,255);
+}
+#sortable1{
+    text-align:center
+}
+#sortable8{
+    text-align:center
+}
+

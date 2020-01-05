@@ -1,0 +1,110 @@
+.container{
+    width:1300px;
+    height:800px;
+    background:RGB(255,255,255);
+}
+.left{
+    width:400px;
+    height:800px;
+    float:left;
+}
+.left_top{
+    width:400px;
+    height:100px;
+    background:RGB(255,115,83);
+    border-bottom:1px solid #000;
+}
+.left_main{
+    width:400px;
+    height:600px;
+    background:RGB(255,255,255);
+}
+.left_bottom{
+    width:400px;
+    height:100px;
+    background:RGB(255,255,255);
+}
+.right{
+    width:740px;
+    height:800px;
+    float:right;
+    background:RGB(49,49,49);
+}
+img{
+    width:150px;
+    height:150px;
+}
+dl{
+    float:left;
+    margin-left:20px;
+}
+.menu_cost{
+    color:RGB(255,255,255);
+}
+
+#right a:link {
+    color:RGB(255,255,255);
+    text-decoration: none;
+}
+#right a:visited {
+    color:RGB(255,255,255);
+    text-decoration: none;
+}
+#right a:hover {
+    color:RGB(255,255,255);
+    text-decoration: none;
+}
+.table_id{
+    font-size: 50px;
+    color:RGB(255,255,255);
+    margin-left:100px;
+}
+#table{
+    width:400px;
+}
+#table tr{
+    height:50px;
+    font-size:20px;
+}
+#table_2{
+    width:400px;
+}
+#table_2 tr{
+    height:50px;
+    font-size:20px;
+}
+
+#table_id{
+    font-size:30px;
+}
+.tr3{
+    border-top:1px solid #000;
+    font-size:20px;
+}
+
+#left_bottom input{
+    width:200px;
+}
+#left_bottom span{
+    font-size:18px;
+}
+
+#member{
+    width:200px;
+    float:left;
+
+}
+#reduce{
+    float:left;
+    margin-left:45px;
+}
+#add{
+    float:left;
+}
+#check{
+     margin-left:240px;
+     margin-top:20px;
+}
+#back{
+    margin-top:20px;
+}

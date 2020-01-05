@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<!-- 桌子页面 -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- <script src="https://cdn.bootcdn.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" href="css/fontawesome.min.css">
+        <link rel="stylesheet" href="css/iconfont.css">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" class="container-fluid main-page">
+            <div class="row" style="justify-content: center;">
+                <div class="col-md-9 content desk-content" style="box-shadow: none;" >
+                    <table ref="tables" id="tables">
+                        <tr>
+                            <td v-for="(item, index) in order" v-if="index<7" v-bind:id="item.name+'td'" :class="item.type">
+                                <div class="desk def-color" :ref="item.name" v-if="item.active!='outline'" :click="goToBooking(item,false,index)" >
+                                    <div class="row">
+                                        <div class="desk-title">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                        <div class="desk-icon">
+                                            <span class="icon iconfont">&#xe600;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="desk def-color" :ref="item.name"  v-if="item.active=='outline'" v-bind:id="item.name"
+                                     :class="item.status=='new' ? 'def-color' : 'order-color'"  v-on:click="goToBooking(item,true,index)" 
+									 style="background:#f5f5f5"
+								>
+                                    <div class="row">
+                                        <div class="desk-title">
+                                            <span style="color:#000000">{{item.name}}</span>
+                                        </div>
+                                        <div class="desk-icon">
+                                            <span class="icon iconfont">&#xe616;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(item, index) in order" v-if="index>=7&&index<14"  v-bind:id="item.name+'td'" :class="item.type">
+                                <div class="desk def-color" :ref="item.name"  v-if="item.active!='outline'" v-bind:id="item.name"
+								 v-on:click="goToBooking(item,false,index+7)"
+							    >
+                                    <div class="row">
+                                        <div class="desk-title">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                        <div class="desk-icon">
+                                            <span class="icon iconfont">&#xe600;</span>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="desk def-color" :ref="item.name"  v-if="item.active=='outline'" v-bind:id="item.name"
+								     :class="item.status=='new' ? 'def-color' : 'order-color'"  v-on:click="goToBooking(item,true,index+7)" 
+									 style="background:#f5f5f5"
+								>
+								    <div class="row">
+								        <div class="desk-title">
+								            <span style="color:#000000">{{item.name}}</span>
+								        </div>
+								        <div class="desk-icon">
+								            <span class="icon iconfont">&#xe616;</span>
+								        </div>
+								    </div>
+								</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(item, index) in order" v-if="index>=14&&index<21"  v-bind:id="item.name+'td'" :class="item.type">
+                                <div class="desk def-color" :ref="item.name"  v-if="item.active!='outline'" v-bind:id="item.name"
+                                 v-on:click="goToBooking(item,false,index+14)" 
+							    >
+                                    <div class="row">
+                                        <div class="desk-title">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                        <div class="desk-icon">
+                                            <span class="icon iconfont">&#xe600;</span>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="desk def-color" :ref="item.name"  v-if="item.active=='outline'" v-bind:id="item.name"
+								     :class="item.status=='new' ? 'def-color' : 'order-color'"  v-on:click="goToBooking(item,true,index+14)" 
+									 style="background:#f5f5f5"
+								>
+								    <div class="row">
+								        <div class="desk-title">
+								            <span style="color:#000000">{{item.name}}</span>
+								        </div>
+								        <div class="desk-icon">
+								            <span class="icon iconfont">&#xe616;</span>
+								        </div>
+								    </div>
+								</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(item, index) in order" v-if="index>=21&&index<28" v-bind:id="item.name+'td'"  :class="item.type">
+                                <div class="desk def-color" :ref="item.name"  v-if="item.active!='outline'" v-bind:id="item.name"
+                                 v-on:click="goToBooking(item,false,index+21)" >
+                                    <div class="row">
+                                        <div class="desk-title">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                        <div class=" desk-icon">
+                                            <span class="icon iconfont">&#xe600;</span>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								<div class="desk def-color" :ref="item.name"  v-if="item.active=='outline'" v-bind:id="item.name"
+								     :class="item.status=='new' ? 'def-color' : 'order-color'"  v-on:click="goToBooking(item,true,index+21)" 
+									 style="background:#f5f5f5"
+								>
+								    <div class="row">
+								        <div class="desk-title">
+								            <span style="color:#000000">{{item.name}}</span>
+								        </div>
+								        <div class="desk-icon">
+								            <span class="icon iconfont">&#xe616;</span>
+								        </div>
+								    </div>
+								</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(item, index) in order" v-if="index>=28&&index<35" v-bind:id="item.name+'td'" :class="item.type">
+                                <div class="desk def-color" :ref="item.name"  v-if="item.active!='outline'" v-bind:id="item.name"
+                                 v-on:click="goToBooking(item,false,index+28)">
+                                    <div class="row">
+                                        <div class="desk-title">
+                                            <span>{{item.name}}</span>
+                                        </div>
+                                        <div class="desk-icon">
+                                            <span class="icon iconfont">&#xe600;</span>
+                                        </div>
+                                    </div>
+                                </div>
+								
+								<div class="desk def-color" :ref="item.name"  v-if="item.active=='outline'" v-bind:id="item.name"
+								     :class="item.status=='new' ? 'def-color' : 'order-color'"  v-on:click="goToBooking(item,true,index+28)" 
+									 style="background:#f5f5f5"
+								>
+								    <div class="row">
+								        <div class="desk-title">
+								            <span style="color:#000000">{{item.name}}</span>
+								        </div>
+								        <div class="desk-icon">
+								            <span class="icon iconfont">&#xe616;</span>
+								        </div>
+								    </div>
+								</div>
+                            </td>
+                        </tr>
+                    </table>
+					<div class="row">
+						<div class="col-md-6">
+						   <button type="button" class="btn btn-danger" @click="save()" >save</button>
+						</div>
+						<div class="col-md-6">
+						   <a href="ordring.html" class="btn btn-danger">back</a>
+						</div>
+					</div>
+                    <!-- <div class="desk def-color" v-for="item in order" :ref="item.name" v-bind:id="item.name" v-on:drop="drop(item)"
+                     v-on:dragover="allowDrop($event)" v-on:dragstart="drag(item)" draggable="true" :class="item.status=='new' ? 'def-color' : 'order-color'"
+                     v-on:click="goToBooking(item)" @touchstart="down($event,item)" @touchmove="mousemove($event,item)" @touchend="mouseup($event,item)">
+                        <div class="row">
+                            <div class="col-md-4 desk-title">
+                                <span>{{item.name}}</span>
+                            </div>
+                            <div class="col-md-8 desk-icon" v-if="item.status!='new'">
+                                <span class="icon iconfont">&#xe616;</span>
+                            </div>
+                            <div class="col-md-8 desk-icon" v-if="item.status=='new'">
+                                <span class="icon iconfont">&#xe600;</span>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+		<div class="dialog">
+			
+		</div>
+        <script type="text/javascript">
+            var app2 = new Vue({
+                el: '#app',
+                created: function() {
+                    var tablel = localStorage.getItem("tableList")
+                    var tableList = JSON.parse(tablel);
+                    if (tableList) {
+                    	for (var ls = 0; ls < this.order.length; ls++) {
+                    		for (var tl = 0; tl < tableList.length; tl++) {
+                    			if (this.order[ls].name == tableList[tl].name) {
+                    				Vue.set( this.order, ls, tableList[tl])
+                    			}
+                    		}
+                    	}
+                    }
+
+		   //          var out = JSON.parse(localStorage.getItem("outlist"));
+					// if(out) {
+					// 	this.outOrder = out;
+					// }
+                },
+                data: {
+                    flags: false,
+					outOrder: [],
+                    order: [{
+                            name: "C1",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C2",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C3",
+                            status: "outline",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C4",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C5",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C6",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C7",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C8",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C9",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C10",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "C11",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "A1",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "A2",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "A3",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "A4",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "A5",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "A6",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B1",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B2",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B3",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B4",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B5",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B6",
+                            status: "new",
+							type: "",
+							active: "online"
+                        }, {
+                            name: "B7",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B8",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B9",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B10",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B11",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B12",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B13",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B14",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B15",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B16",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B17",
+                            status: "new",
+							type: "",
+							active: "online"
+                        },
+                        {
+                            name: "B18",
+                            status: "new",
+							type: "",
+							active: "online"
+                        }
+                    ]
+                },
+                methods: {
+					addOutOrder(){
+						var timestamp = new Date().getTime();
+						window.location.href = './booking.html?tid=wd' + timestamp;
+					},
+					save(){
+						localStorage.setItem("tableList", JSON.stringify(this.order));
+						window.location.href = './ordring.html';
+					},
+                    goToBooking: function(item,v,index) {
+						if(!v){
+						  item.active = "outline"
+						} else {
+						  item.active = "online";
+						  if(item.type == "Round"){
+							  // this.order[index].type = ""
+							  item.type = ""
+						  }else{
+							  // this.order[index].type = "Round"
+							  item.type = "Round"
+						  }
+						}
+						
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

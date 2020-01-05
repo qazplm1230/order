@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p >{{name}}</p>
+</div>
+
+<script>
+    var vm=new Vue({
+        el: '#app',
+        data: {
+            name: '小小陈先森'
+        },
+        created:function () {
+            var timestamp = new Date().getTime();
+            vm.name='tom'+timestamp;
+         }
+    });
+
+</script>
+
+</body>
+</html>
